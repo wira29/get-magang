@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,7 @@ Auth::routes();
 Route::middleware(['auth', 'admin'])->group(function() {
     Route::resources([
         'school'    => SchoolController::class,
+        'student'   => StudentController::class
     ]);
     Route::get('/', function () {
         return view('dashboard.blank');

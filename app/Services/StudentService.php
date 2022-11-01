@@ -2,29 +2,28 @@
 
 namespace App\Services;
 
-use App\Http\Requests\School\CreateRequest;
-use App\Http\Requests\School\UpdateRequest;
-use App\Repositories\SchoolRepository;
 use App\Traits\YajraTable;
+use App\Http\Requests\StudentRequest;
+use App\Repositories\StudentRepository;
 
-class SchoolService
+class StudentService 
 {
     use YajraTable;
-    private SchoolRepository $repository;
+    private StudentRepository $repository;
 
-    public function __construct(SchoolRepository $repository)
+    public function __construct(StudentRepository $repository)
     {
         $this->repository = $repository;
     }
 
     /**
-     * get all schools for yajra
+     * get all student for yajra
      * 
      * @return object
      */
     public function handleGetAll(): object
     {
-        return $this->SchoolMockup($this->repository->getAll());
+        return $this->StudentMockup($this->repository->getAll());
     }
 
     /**
@@ -32,43 +31,43 @@ class SchoolService
      * 
      * @return object
      */
-    public function handleGetAllSchool(): object
+    public function handleGetAllStudent(): object
     {
         return $this->repository->getAll();
     }
 
     /**
-     * handle store school
+     * handle store student
      * 
-     * @param CreateRequest $request
+     * @param StudentRequest $request
      * 
      * @return void
      */
-    public function handleStoreSchool(CreateRequest $request): void
+    public function handleStoreStudent(StudentRequest $request): void
     {
         $this->repository->store($request->validated());
     }
 
     /**
-     * handle update school
+     * handle update student
      * 
-     * @param UpdateRequest $request
+     * @param StudentRequest $request
      * @param string $id
      * 
      * @return void
      */
-    public function handleUpdateSchool(UpdateRequest $request, string $id)
+    public function handleUpdateStudent(StudentRequest $request, string $id)
     {
         $this->repository->update($id, $request->validated());
     }
 
     /**
-     * handle delete school
+     * handle delete student
      * 
      * @param string id
      * @return bool
      */
-    public function handleDeleteSchool(string $id): bool
+    public function handleDeleteStudent(string $id): bool
     {
         return $this->repository->destroy($id);
     }

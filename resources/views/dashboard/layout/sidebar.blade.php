@@ -64,27 +64,27 @@
                     </li>
                 </ul>
             </li>
-            <li class="sidebar-item">
+            <li class="sidebar-item {{ request()->routeIs('student.*') ? 'active' : '' }}">
                 <a
-                    data-bs-target="#ui"
+                    data-bs-target="#student"
                     data-bs-toggle="collapse"
                     class="sidebar-link collapsed"
                 >
-                    <i class="align-middle" data-feather="grid"></i>
+                    <i class="align-middle" data-feather="layout"></i>
                     <span class="align-middle">Siswa</span>
                 </a>
                 <ul
-                    id="ui"
-                    class="sidebar-dropdown list-unstyled collapse"
+                    id="student"
+                    class="sidebar-dropdown list-unstyled collapse {{ request()->routeIs('student.*') ? 'show' : '' }}"
                     data-bs-parent="#sidebar"
                 >
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="pages-profile.html"
+                    <li class="sidebar-item {{ request()->routeIs('student.create') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('student.create') }}"
                             >Tambah Siswa</a
                         >
                     </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="pages-blank.html"
+                    <li class="sidebar-item {{ request()->routeIs('student.index') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('student.index') }}"
                             >List Siswa</a
                         >
                     </li>
