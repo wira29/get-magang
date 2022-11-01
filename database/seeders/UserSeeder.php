@@ -3,11 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\Role;
+use App\Models\User;
 use Faker\Provider\Uuid;
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 
-class RoleSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,12 +17,15 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $roles = array('admin', 'siswa');
+        $roles = Role::all();
         
         foreach($roles as $role){
-            Role::create([
+            User::create([
                 'id'    => Uuid::uuid(),
-                'role_name' => $role  
+                'name'  => fake()->name(),
+                'email' => fake()->safeEmail(),
+                'password' => bcrypt('password'),
+                'role_id'   => $role->id
             ]);
         }
     }

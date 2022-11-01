@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SchoolController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,5 +20,18 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::middleware(['auth', 'admin'])->group(function() {
+    Route::resources([
+        'school'    => SchoolController::class,
+    ]);
+    Route::get('/', function () {
+        return view('dashboard.blank');
+    });
+});
+
+Route::middleware(['auth', 'student'])->group(function() {
+    
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

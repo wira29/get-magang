@@ -38,7 +38,7 @@
                     <span class="align-middle">Dashboard</span>
                 </a>
             </li>
-            <li class="sidebar-item active">
+            <li class="sidebar-item {{ request()->routeIs('school.*') ? 'active' : '' }}">
                 <a
                     data-bs-target="#pages"
                     data-bs-toggle="collapse"
@@ -49,7 +49,7 @@
                 </a>
                 <ul
                     id="pages"
-                    class="sidebar-dropdown list-unstyled collapse show"
+                    class="sidebar-dropdown list-unstyled collapse {{ request()->routeIs('school.*') ? 'show' : '' }}"
                     data-bs-parent="#sidebar"
                 >
                     <li class="sidebar-item">
@@ -57,7 +57,7 @@
                             >Tambah Sekolah</a
                         >
                     </li>
-                    <li class="sidebar-item active">
+                    <li class="sidebar-item {{ request()->routeIs('school.index') ? 'active' : '' }}">
                         <a class="sidebar-link" href="pages-blank.html"
                             >List Sekolah</a
                         >
