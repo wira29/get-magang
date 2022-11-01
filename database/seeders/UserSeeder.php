@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
             User::create([
                 'id'    => Uuid::uuid(),
                 'name'  => fake()->name(),
+                'username'  => fake()->userName(),
                 'email' => fake()->safeEmail(),
                 'password' => bcrypt('password'),
                 'role_id'   => $role->id

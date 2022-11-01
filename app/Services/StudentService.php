@@ -40,12 +40,16 @@ class StudentService
      * handle store student
      * 
      * @param StudentRequest $request
+     * @string $userId
      * 
      * @return void
      */
-    public function handleStoreStudent(StudentRequest $request): void
+    public function handleStoreStudent(StudentRequest $request, string $userId): void
     {
-        $this->repository->store($request->validated());
+        $data = $request->validated();
+        $data['user_id'] = $userId;
+
+        $this->repository->store($data);
     }
 
     /**

@@ -7,17 +7,20 @@ use App\Models\Dashboard\School;
 use App\Models\Dashboard\Student;
 use App\Services\SchoolService;
 use App\Services\StudentService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
     private SchoolService $schoolService;
     private StudentService $service;
+    private UserService $userService;
 
-    public function __construct(SchoolService $schoolService, StudentService $service)
+    public function __construct(SchoolService $schoolService, StudentService $service, UserService $userService)
     {
         $this->schoolService = $schoolService;
         $this->service = $service;
+        $this->userService = $userService;
     }
 
     /**
@@ -52,7 +55,8 @@ class StudentController extends Controller
      */
     public function store(StudentRequest $request)
     {
-        $this->service->handleStoreStudent($request);
+        $user = $this->userService->handleCreateUser($request);
+        $this->service->handleStoreStudent($request, $user->id);
 
         return to_route('student.index')->with('success', 'Berhasil menambahkan siswa!');
     }
