@@ -52,13 +52,13 @@
                     class="sidebar-dropdown list-unstyled collapse {{ request()->routeIs('school.*') ? 'show' : '' }}"
                     data-bs-parent="#sidebar"
                 >
-                    <li class="sidebar-item">
-                        <a class="sidebar-link" href="pages-profile.html"
+                    <li class="sidebar-item {{ request()->routeIs('school.create') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('school.create') }}"
                             >Tambah Sekolah</a
                         >
                     </li>
                     <li class="sidebar-item {{ request()->routeIs('school.index') ? 'active' : '' }}">
-                        <a class="sidebar-link" href="pages-blank.html"
+                        <a class="sidebar-link" href="{{ route('school.index') }}"
                             >List Sekolah</a
                         >
                     </li>

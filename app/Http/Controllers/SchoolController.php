@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\School\CreateRequest;
+use App\Services\SchoolService;
 use Illuminate\Http\Request;
 
 class SchoolController extends Controller
 {
+    private SchoolService $service;
+
+    public function __construct(SchoolService $service)
+    {
+        $this->service = $service;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +31,7 @@ class SchoolController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.schools.create');
     }
 
     /**
@@ -32,9 +40,9 @@ class SchoolController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        //
+        $this->service->handleStoreSchool($request);
     }
 
     /**
