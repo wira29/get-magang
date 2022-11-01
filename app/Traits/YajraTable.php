@@ -15,12 +15,12 @@ trait YajraTable
      * @return JsonResponse
      */
 
-    public function StationMockup(mixed $collection): JsonResponse
+    public function SchoolMockup(mixed $collection): JsonResponse
     {
         return DataTables::of($collection)
             ->addIndexColumn()
             ->addColumn('action', function ($data) {
-                return view('dashboard.pages.station.datatables', compact('data'));
+                return view('dashboard.schools.datatables', compact('data'));
             })
             ->rawColumns(['action'])
             ->toJson();

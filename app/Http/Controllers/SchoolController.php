@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\School\CreateRequest;
+use App\Http\Requests\School\UpdateRequest;
+use App\Models\Dashboard\School;
 use App\Services\SchoolService;
 use Illuminate\Http\Request;
 
@@ -21,6 +23,7 @@ class SchoolController extends Controller
      */
     public function index()
     {
+        if (request()->ajax()) return $this->service->handleGetAll();
         return view('dashboard.schools.index');
     }
 
@@ -43,6 +46,8 @@ class SchoolController extends Controller
     public function store(CreateRequest $request)
     {
         $this->service->handleStoreSchool($request);
+
+        return to_route('school.index')->with('success', 'Berhasil menambahkan sekolah!');
     }
 
     /**
@@ -59,34 +64,40 @@ class SchoolController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  School $school
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(School $school)
     {
-        //
+        return view('dashboard.schools.edit', compact('school'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  UpdateRequest  $request
+     * @param  School  $school
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, School $school)
     {
-        //
+        $this->service->handleUpdateSchool($request, $school->id);
+
+        return to_route('school.index')->with('success', 'Berhasil mengedit sekolah!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  School  $school
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(School $school)
     {
-        //
+        $destroy = $this->service->handleDeleteSchool($school->id);
+
+        if (!$destroy) return back()->with('errors', 'Gagal menghapus sekolah!');
+
+        return back()->with('success', 'Berhasil menghapus sekolah!');
     }
 }

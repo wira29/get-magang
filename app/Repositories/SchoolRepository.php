@@ -6,7 +6,7 @@ use App\Models\Dashboard\School;
 
 class SchoolRepository extends BaseRepository
 {
-    public function __constructc(School $school)
+    public function __construct(School $school)
     {
         $this->model = $school;
     }
