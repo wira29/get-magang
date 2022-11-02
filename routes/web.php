@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function(){
     Route::name('profile.')->group(function(){
         Route::get('profile', [UserController::class, 'index'])->name('index');
         Route::post('profile/{users}', [UserController::class, 'updateUser'])->name('update');
+        Route::post('reset-password', [UserController::class, 'resetPassword'])->name('reset-password');
     });
 });
 

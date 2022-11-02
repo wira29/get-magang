@@ -37,8 +37,14 @@ class UserController extends Controller
      */
     public function updateUser(ProfileRequest $request, User $user)
     {
-        // dd($user);
         $this->service->handleUpdateUserById($request, auth()->id());
         return back()->with('success', 'Berhasil mengedit profile!');
+    }
+
+    public function resetPassword(ProfileRequest $request)
+    {
+        // dd($request);
+        $this->service->handleUpdatePasswordUserById($request, auth()->id());
+        return back()->with('success', 'Berhasil memperbarui password!');
     }
 }

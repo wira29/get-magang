@@ -35,6 +35,13 @@ class UserService
         $this->repository->update($id, $request->validated());
     }
 
+    public function handleUpdatePasswordUserById(ProfileRequest $request, string $id): void
+    {
+        $data = $request->validated();
+        $data['password'] = bcrypt($data['password']);
+        $this->repository->update($id, $data);
+    }
+
     /**
      * handle create user
      * @param StudentRequest $request

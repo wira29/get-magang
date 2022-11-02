@@ -14,11 +14,19 @@ class ProfileRequest extends BaseRequest
      */
     public function rules(): array
     {
-        return [
-            'name'  => 'required',
-            'username' => ['required', Rule::unique('users', 'username')->ignore($this->users)],
-            'email' => ['required', Rule::unique('users', 'email')->ignore($this->users)]
-        ];
+        if(request()->routeIs('profile.update')){
+            return [
+                'name'  => 'required',
+                'username' => ['required', Rule::unique('users', 'username')->ignore($this->users)],
+                'email' => ['required', Rule::unique('users', 'email')->ignore($this->users)]
+            ];
+        }
+        else if(request()->routeIs('profile.reset-password')){
+            return [
+                'old_password' => 'required',
+                'password'  => 'required|confirmed',
+            ];
+        }
     }
 
     /**
@@ -34,6 +42,9 @@ class ProfileRequest extends BaseRequest
             'username.unique'   => 'Username telah digunakan',
             'email.required' => 'Email tidak boleh kosong!',
             'email.unique'   => 'Email telah digunakan',
+            'old_password.required' => 'Password lama tidak boleh kosong!',
+            'password.required' => 'Password tidak boleh kosong!',
+            'password.confirmed'    => 'Konfirmasi password tidak boleh sesuai!'
         ];
     }
 }

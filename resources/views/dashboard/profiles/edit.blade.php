@@ -44,9 +44,7 @@
                                         value="{{ $user->name }}"
                                         name="name"
                                         class="form-control"
-                                        placeholder="Scan Kartu"
-                                        autofocus
-                                        id="rfid"
+                                        placeholder="Nama"
                                     />
                                 </div>
                             </div>
@@ -58,7 +56,7 @@
                                         value="{{ $user->username }}"
                                         name="username"
                                         class="form-control"
-                                        placeholder="John Doe"
+                                        placeholder="Username"
                                     />
                                 </div>
                                 <div class="col-md-6 mb-3">
@@ -69,7 +67,7 @@
                                         value="{{ $user->email }}"
                                         name="email"
                                         class="form-control"
-                                        placeholder="John Doe"
+                                        placeholder="Email"
                                     />
                                     </div>
                                 </div>
@@ -96,44 +94,42 @@
                     <div class="card-body">
                         <form
                             id="form"
-                            action="{{ route('student.store') }}"
+                            action="{{ route('profile.reset-password') }}"
                             method="POST"
                         >
                             @method('POST') @csrf
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <label class="form-label">Nama</label>
+                                    <label class="form-label">Password Lama</label>
                                     <input
-                                        type="text"
-                                        value="{{ old('rfid') }}"
-                                        name="rfid"
+                                        type="password"
+                                        value="{{ old('old_password') }}"
+                                        name="old_password"
                                         class="form-control"
-                                        placeholder="Scan Kartu"
-                                        autofocus
-                                        id="rfid"
+                                        placeholder="Password Lama"
                                     />
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Username</label>
+                                    <label class="form-label">Password Baru</label>
                                     <input
-                                        type="text"
-                                        value="{{ old('student_name') }}"
-                                        name="student_name"
+                                        type="password"
+                                        value="{{ old('password') }}"
+                                        name="password"
                                         class="form-control"
-                                        placeholder="John Doe"
+                                        placeholder="Password Baru"
                                     />
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Email</label>
+                                    <label class="form-label">Konfirmasi Password</label>
                                     <div class="mb-3">
                                         <input
-                                        type="text"
-                                        value="{{ old('student_name') }}"
-                                        name="student_name"
+                                        type="password"
+                                        value="{{ old('password_confirmation') }}"
+                                        name="password_confirmation"
                                         class="form-control"
-                                        placeholder="John Doe"
+                                        placeholder="Konfirmasi Password"
                                     />
                                     </div>
                                 </div>
