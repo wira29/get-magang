@@ -34,6 +34,7 @@ Route::middleware(['auth', 'admin'])->group(function() {
 });
 
 Route::middleware(['auth', 'student'])->group(function() {
+    Route::post('journal/{journal}', [JournalController::class, 'update'])->name('updateJournal');
     Route::resources([
         'journal'   => JournalController::class
     ]);

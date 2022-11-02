@@ -81,7 +81,7 @@ class JournalController extends Controller
      */
     public function update(JournalRequest $request, Journal $journal)
     {
-        $this->service->handleStoreJournal($request, $journal->id);
+        $this->service->handleUpdateJournal($request, $journal->id);
 
         return response()->json(['message' => 'Berhasil mengedit jurnal!']);
     }

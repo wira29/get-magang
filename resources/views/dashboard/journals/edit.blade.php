@@ -29,7 +29,7 @@
                     <div class="card-body">
                         <form
                             id="form"
-                            action="{{ route('journal.store', $journal->id) }}"
+                            action="{{ route('updateJournal', $journal->id) }}"
                             method="POST"
                         >
                             @csrf
@@ -186,7 +186,6 @@
 
             const fd = new FormData(document.getElementById("form"))
             fd.append("description", editor_value)
-            fd.append('_method', "PUT")
 
             $.ajax({
                 headers: {
@@ -196,12 +195,12 @@
                 },
                 type: "POST",
                 url: url,
-                data: {
-                    '_method'   : 'POST',
-                    'title' : 'wira',
-                    'description' : editor_value
-                },
+                data: fd,
                 dataType: "JSON",
+                processData: false,
+                contentType: false,
+                cache: false,
+                enctype: 'multipart/form-data',
                 success: function (e) {
                     window.location.href = `{{ route('journal.index', ['success' => '${e.message}']) }}`
                 },
