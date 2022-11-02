@@ -21,7 +21,11 @@ Route::get('/', function () {
     return view('dashboard.blank');
 });
 
-Auth::routes();
+Auth::routes([
+    'verify' => false,
+    'register' => false,
+    'reset' => false
+]);
 
 Route::middleware(['auth', 'admin'])->group(function() {
     Route::resources([
