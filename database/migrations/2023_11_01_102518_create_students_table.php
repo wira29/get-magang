@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('rfid');
+            $table->string('rfid')->unique();
             $table->string('student_name', 150);
             $table->enum('gender', ['male', 'female']);
             $table->foreignUuid('school_id')->constrained('schools');
