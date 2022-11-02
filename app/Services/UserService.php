@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\StudentRequest;
 use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
@@ -15,6 +16,23 @@ class UserService
     {
         $this->repository = $repository;
         $this->roleRepository = $roleRepository;
+    }
+
+    /**
+     * handle gegt user by id
+     * 
+     * @param string $id
+     * 
+     * @return object
+     */
+    public function handleGetUserById(string $id): object
+    {
+        return $this->repository->show($id);
+    }
+
+    public function handleUpdateUserById(ProfileRequest $request, string $id): void
+    {
+        $this->repository->update($id, $request->validated());
     }
 
     /**

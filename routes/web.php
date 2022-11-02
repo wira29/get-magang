@@ -3,6 +3,7 @@
 use App\Http\Controllers\JournalController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,13 @@ Route::middleware(['auth', 'student'])->group(function() {
     Route::resources([
         'journal'   => JournalController::class
     ]);
+});
+
+Route::middleware('auth')->group(function(){
+    Route::name('profile.')->group(function(){
+        Route::get('profile', [UserController::class, 'index'])->name('index');
+        Route::post('profile/{users}', [UserController::class, 'updateUser'])->name('update');
+    });
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

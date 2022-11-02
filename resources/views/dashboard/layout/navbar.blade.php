@@ -125,15 +125,15 @@
                     href="#"
                     data-bs-toggle="dropdown"
                 >
-                    <img
+                    <!-- <img
                         src="{{ asset('app-assets/img/avatars/avatar.jpg') }}"
                         class="avatar img-fluid rounded-circle me-1"
                         alt="Chris Wood"
-                    />
+                    /> -->
                     <span class="text-dark">{{ auth()->user()->name }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="pages-profile.html"
+                    <a class="dropdown-item" href="{{ route('profile.index') }}"
                         ><i class="align-middle me-1" data-feather="user"></i>
                         Profile</a
                     >
