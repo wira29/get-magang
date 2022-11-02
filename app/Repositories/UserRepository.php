@@ -10,4 +10,15 @@ class UserRepository extends BaseRepository
     {
         $this->model = $user;
     }
+
+    /**
+     * find user by id
+     * 
+     * @param string $id
+     * @return object|null
+     */
+    public function findUser(string $id): object|null
+    {
+        return $this->model->find($id);
+    }
 }

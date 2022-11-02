@@ -97,6 +97,7 @@ class StudentController extends Controller
     public function update(StudentRequest $request, Student $student)
     {
         $this->service->handleUpdateStudent($request, $student->id);
+        $this->userService->handleUpdateUser($request, $student->user_id);
 
         return to_route('student.index')->with('success', 'Berhasil mengedit siswa!');
     }
@@ -110,8 +111,9 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         $destroy = $this->service->handleDeleteStudent($student->id);
-
+        
         if (!$destroy) return back()->with('errors', 'Gagal menghapus siswa!');
+        else $this->userService->handleDeleteUser($student->user_id); 
 
         return back()->with('success', 'Berhasil menghapus siswa!');
     }
