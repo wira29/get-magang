@@ -21,6 +21,7 @@
                                 <th>No</th>
                                 <th>Nama Siswa</th>
                                 <th>Jenis Kelamin</th>
+                                <th>Sekolah</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
@@ -69,6 +70,10 @@
                 {
                     data: 'gender',
                     name: 'gender'
+                },
+                {
+                    data: 'school.school_name',
+                    name: 'school.school_name'
                 },
                 {
                     data: 'action',

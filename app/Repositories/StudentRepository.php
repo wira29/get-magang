@@ -10,4 +10,15 @@ class StudentRepository extends BaseRepository
     {
         $this->model = $student;
     }
+
+    /**
+     * get all student for yajra table
+     * 
+     * @return mixed
+     */
+    public function getAllStudent(): mixed
+    {
+        return $this->model->query()
+            ->with('school');
+    }
 }

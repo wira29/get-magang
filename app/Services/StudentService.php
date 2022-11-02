@@ -17,13 +17,13 @@ class StudentService
     }
 
     /**
-     * get all student for yajra
+     * get all student for yajra table
      * 
      * @return object
      */
     public function handleGetAll(): object
     {
-        return $this->StudentMockup($this->repository->getAll());
+        return $this->StudentMockup($this->repository->getAllStudent());
     }
 
     /**
