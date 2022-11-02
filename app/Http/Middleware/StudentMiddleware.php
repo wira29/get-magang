@@ -17,8 +17,8 @@ class StudentMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!UserHelper::checkRoleSiswa()){
-            return back(); 
+        if (!UserHelper::checkRoleSiswa()) {
+            return back();
         }
         return $next($request);
     }

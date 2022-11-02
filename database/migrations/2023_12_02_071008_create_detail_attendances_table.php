@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('detail_attendances', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->foreignUuid('attendance_id')->constrained();
             $table->text('photo')->nullable();
+            $table->enum('status', ['present', 'break', 'return_break', 'return']);
             $table->timestamps();
         });
     }

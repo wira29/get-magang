@@ -15,11 +15,7 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('student_id')->constrained('students');
-            $table->foreignUuid('present')->constrained('detail_attendances')->nullable();
-            $table->foreignUuid('break')->constrained('detail_attendances')->nullable();
-            $table->foreignUuid('return_break')->constrained('detail_attendances')->nullable();
-            $table->foreignUuid('return')->constrained('detail_attendances')->nullable();
+            $table->foreignUuid('student_id')->constrained();
             $table->timestamps();
         });
     }

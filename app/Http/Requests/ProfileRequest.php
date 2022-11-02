@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 class ProfileRequest extends BaseRequest
@@ -14,14 +13,14 @@ class ProfileRequest extends BaseRequest
      */
     public function rules(): array
     {
-        if(request()->routeIs('profile.update')){
+        if (request()->routeIs('profile.update')) {
             return [
                 'name'  => 'required',
                 'username' => ['required', Rule::unique('users', 'username')->ignore($this->users)],
-                'email' => ['required', Rule::unique('users', 'email')->ignore($this->users)]
+                'email' => ['required', Rule::unique('users', 'email')->ignore($this->users)],
+                'github' => 'nullable|url'
             ];
-        }
-        else if(request()->routeIs('profile.reset-password')){
+        } else if (request()->routeIs('profile.reset-password')) {
             return [
                 'old_password' => 'required',
                 'password'  => 'required|confirmed',
@@ -44,7 +43,8 @@ class ProfileRequest extends BaseRequest
             'email.unique'   => 'Email telah digunakan',
             'old_password.required' => 'Password lama tidak boleh kosong!',
             'password.required' => 'Password tidak boleh kosong!',
-            'password.confirmed'    => 'Konfirmasi password tidak boleh sesuai!'
+            'password.confirmed'    => 'Konfirmasi password tidak boleh sesuai!',
+            'github.url' => 'Link tidak valid'
         ];
     }
 }
