@@ -17,7 +17,8 @@ class StudentRequest extends BaseRequest
         return [
             'student_name' => 'required',
             'gender'    => 'required',
-            'school_id' => 'required'
+            'school_id' => 'required',
+            'rfid'      => 'required'
         ];
     }
 
@@ -31,7 +32,8 @@ class StudentRequest extends BaseRequest
         return [
             'student_name.required' => 'Nama siswa tidak boleh kosong!',
             'gender.required'       => 'Jenis kelamin tidak boleh kosong!',
-            'school_id.required'    => 'Sekolah tidak boleh kosong!'
+            'school_id.required'    => 'Sekolah tidak boleh kosong!',
+            'rfid.required'    => 'RFID tidak boleh kosong!'
         ];
     }
 }

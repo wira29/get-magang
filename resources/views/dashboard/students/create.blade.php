@@ -33,6 +33,20 @@
                         >
                             @method('POST') @csrf
                             <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">RFID</label>
+                                    <input
+                                        type="text"
+                                        value="{{ old('rfid') }}"
+                                        name="rfid"
+                                        class="form-control"
+                                        placeholder="Scan Kartu"
+                                        autofocus
+                                        id="rfid"
+                                    />
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Nama Siswa</label>
                                     <input
@@ -117,6 +131,15 @@
                     placeholder: "Select value",
                     dropdownParent: $(this).parent()
                 });
+        })
+
+        $('#rfid').keydown(function(e) {
+            if(e.keyCode == 13){
+                e.preventDefault();
+                $("input[name='student_name']").focus()
+                $(this).attr('readonly', true)
+                return false;
+            }
         })
     });
 </script>

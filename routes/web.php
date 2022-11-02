@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JournalController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +34,9 @@ Route::middleware(['auth', 'admin'])->group(function() {
 });
 
 Route::middleware(['auth', 'student'])->group(function() {
-    
+    Route::resources([
+        'journal'   => JournalController::class
+    ]);
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

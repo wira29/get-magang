@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('journals', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->foreignUuid('student_id')->constrained('students');
             $table->string('title', 150);
             $table->text('description');
             $table->timestamps();

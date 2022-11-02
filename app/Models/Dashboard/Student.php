@@ -15,7 +15,7 @@ class Student extends Model
     protected $table = 'students';
     protected $primaryKey = 'id';
 
-    protected $fillable = ['student_name', 'gender', 'school_id', 'user_id'];
+    protected $fillable = ['student_name', 'gender', 'school_id', 'user_id', 'rfid'];
 
     /**
      * Relationship many-to-one with school

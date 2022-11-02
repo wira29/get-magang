@@ -38,6 +38,7 @@
                     <span class="align-middle">Dashboard</span>
                 </a>
             </li>
+            @if (auth()->user()->role->role_name == 'admin')
             <li class="sidebar-item {{ request()->routeIs('school.*') ? 'active' : '' }}">
                 <a
                     data-bs-target="#pages"
@@ -90,6 +91,34 @@
                     </li>
                 </ul>
             </li>
+            @elseif (auth()->user()->role->role_name == 'siswa')
+            <li class="sidebar-item {{ request()->routeIs('journal.*') ? 'active' : '' }}">
+                <a
+                    data-bs-target="#journal"
+                    data-bs-toggle="collapse"
+                    class="sidebar-link collapsed"
+                >
+                    <i class="align-middle" data-feather="layout"></i>
+                    <span class="align-middle">Jurnal</span>
+                </a>
+                <ul
+                    id="journal"
+                    class="sidebar-dropdown list-unstyled collapse {{ request()->routeIs('journal.*') ? 'show' : '' }}"
+                    data-bs-parent="#sidebar"
+                >
+                    <li class="sidebar-item {{ request()->routeIs('journal.create') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('journal.create') }}"
+                            >Tambah Jurnal</a
+                        >
+                    </li>
+                    <li class="sidebar-item {{ request()->routeIs('journal.index') ? 'active' : '' }}">
+                        <a class="sidebar-link" href="{{ route('journal.index') }}"
+                            >List Jurnal</a
+                        >
+                    </li>
+                </ul>
+            </li>
+            @endif
         </ul>
     </div>
 </nav>

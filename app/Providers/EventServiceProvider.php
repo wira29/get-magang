@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Dashboard\Journal;
 use App\Models\User;
 use App\Models\Dashboard\School;
 use App\Models\Dashboard\Student;
+use App\Observers\JournalObserver;
 use App\Observers\SchoolObserver;
 use App\Observers\StudentObserver;
 use App\Observers\UserObserver;
@@ -36,6 +38,7 @@ class EventServiceProvider extends ServiceProvider
         School::observe(SchoolObserver::class);
         Student::observe(StudentObserver::class);
         User::observe(UserObserver::class);
+        Journal::observe(JournalObserver::class);
     }
 
     /**

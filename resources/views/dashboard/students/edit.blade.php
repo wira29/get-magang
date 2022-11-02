@@ -33,6 +33,20 @@
                         >
                             @method('PATCH') @csrf
                             <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">RFID</label>
+                                    <input
+                                        type="text"
+                                        value="{{ $student->rfid }}"
+                                        name="rfid"
+                                        class="form-control"
+                                        placeholder="Scan Kartu"
+                                        readonly
+                                        id="rfid"
+                                    />
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Nama Siswa</label>
                                     <input
