@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories;
 
@@ -34,8 +34,9 @@ class AttendanceRepository extends BaseRepository
      */
     public function getAttendanceByDate(string $userId, string $date): object|null
     {
-        return $this->model->where('student_id', $userId)
-            ->where('created_at', 'like', '%'.$date.'%')
+        return $this->model->query()
+            ->where(['student_id' => $userId])
+            ->whereDate('created_at', $date)
             ->first();
     }
 }

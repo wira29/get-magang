@@ -11,7 +11,7 @@ class AttendanceController extends Controller
 {
     private AttendanceService $service;
 
-    public function __construct(AttendanceService $service) 
+    public function __construct(AttendanceService $service)
     {
         $this->service = $service;
     }
@@ -25,10 +25,10 @@ class AttendanceController extends Controller
      */
     public function attendance(Request $request): JsonResponse
     {
-        if($request->hasFile('photo')){
+        if ($request->hasFile('photo')) {
             return $this->service->handleAttendance($request);
         }
 
-        return response()->json(['status' => 'Gagal', 'message' => 'Ulangi absen anda!' ]);
+        return response()->json(['status' => 'Gagal', 'message' => 'Ulangi absen anda!']);
     }
 }

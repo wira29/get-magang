@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Services;
 
@@ -19,7 +19,7 @@ class UserService
     }
 
     /**
-     * handle gegt user by id
+     * handle get user by id
      * 
      * @param string $id
      * 
@@ -30,10 +30,28 @@ class UserService
         return $this->repository->show($id);
     }
 
+    /**
+     * handle update user by id
+     * 
+     * @param ProfileRequest $request
+     * @param string $id
+     * 
+     * @return void
+     */
+
     public function handleUpdateUserById(ProfileRequest $request, string $id): void
     {
         $this->repository->update($id, $request->validated());
     }
+
+    /**
+     * handle update password user by id
+     * 
+     * @param ProfileRequest $request
+     * @param string $id
+     * 
+     * @return void
+     */
 
     public function handleUpdatePasswordUserById(ProfileRequest $request, string $id): void
     {
@@ -58,12 +76,12 @@ class UserService
             'password' => bcrypt('password'),
             'role_id'   => $role->id
         ];
-        
+
         return $this->repository->store($user);
     }
 
     /**
-     * handel update user
+     * handle update user
      * @param StudentRequest $request
      * @param string $id
      * 
@@ -90,7 +108,7 @@ class UserService
     {
         $user = $this->repository->findUser($id);
 
-        if($user){
+        if ($user) {
             $user->delete();
         }
     }

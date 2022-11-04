@@ -1,8 +1,10 @@
-<?php 
+<?php
 
 namespace App\Repositories;
 
 use App\Models\Dashboard\Student;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StudentRepository extends BaseRepository
 {
@@ -31,6 +33,12 @@ class StudentRepository extends BaseRepository
      */
     public function getStudentByRfid(string $rfid): object|null
     {
-        return $this->model->where('rfid', $rfid)->first();
+        try {
+            return $this->model->where('rfid', $rfid)->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            throw new HttpResponseException(
+                response()->json(['status' => 'Gagal', 'message' => 'Siswa tidak ditemukan!'])
+            );
+        }
     }
 }

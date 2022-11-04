@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories;
 
@@ -14,13 +14,40 @@ class DetailAttendanceRepository extends BaseRepository
     /**
      * update or create detail attendance
      * 
-     * @param array $condition
+     * @param string $attendance_id
      * @param array $data
+     * @param mixed $time
      * 
      * @return mixed
      */
-    public function updateOrCreate(array $condition, array $data): mixed
+    public function doAttendance(string $attendance_id, mixed $time): mixed
     {
-        return $this->model->updateOrCreate($condition, $data);
+        if ($time >= '07:00:00' && $time <= '09:00:00') {
+            return $this->model->query()
+                ->updateOrCreate(
+                    ['attendance_id' => $attendance_id, 'status' => 'present'],
+                    ['status' => 'present']
+                );
+        } else if ($time >= '11:30:00' && $time <= '12:30:00') {
+            return $this->model->query()
+                ->updateOrCreate(
+                    ['attendance_id' => $attendance_id, 'status' => 'break'],
+                    ['status' => 'break']
+                );
+        } else if ($time >= '12:30:00' && $time <= '13:30:00') {
+            return $this->model->query()
+                ->updateOrCreate(
+                    ['attendance_id' => $attendance_id, 'status' => 'return_break'],
+                    ['status' => 'return_break']
+                );
+        } else if ($time >= '15:30:00' && $time <= '16:00:00') {
+            return $this->model->query()
+                ->updateOrCreate(
+                    ['attendance_id' => $attendance_id, 'status' => 'return'],
+                    ['status' => 'return']
+                );
+        }
+
+        return null;
     }
 }
