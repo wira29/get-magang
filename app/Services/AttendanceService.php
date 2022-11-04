@@ -45,10 +45,12 @@ class AttendanceService
 
         $action = $this->detailAttendanceRepository->doAttendance($attendance->id, $now);
 
-        throw_if(!$action, response()->json(['status' => 'Gagal', 'message' => 'Jam absensi tidak tersedia']));
+        if (!$action) {
+            throw new HttpResponseException(response()->json(['status' => 'Gagal', 'message' => 'Jam absensi tidak tersedia']));
+        }
 
         if (!$action->wasRecentlyCreated) {
-            return response()->json(['status' => 'Gagal', 'message' => 'Anda telah absensi pada jam ini']);
+            throw new HttpResponseException(response()->json(['status' => 'Gagal', 'message' => 'Anda telah absensi pada jam ini']));
         }
 
         $action->update([
