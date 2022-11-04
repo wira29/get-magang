@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('student_id')->constrained();
+            $table->enum('status', ['masuk', 'izin', 'sakit', 'alpha']);
             $table->timestamps();
         });
     }

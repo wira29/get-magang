@@ -21,4 +21,16 @@ class StudentRepository extends BaseRepository
         return $this->model->query()
             ->with('school');
     }
+
+    /**
+     * get student by rfid
+     * 
+     * @param string $rfid
+     * 
+     * @return object|null
+     */
+    public function getStudentByRfid(string $rfid): object|null
+    {
+        return $this->model->where('rfid', $rfid)->first();
+    }
 }

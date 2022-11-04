@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\TestController;
+use App\Http\Controllers\Api\AttendanceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/attendance', [TestController::class, 'attendance']);
+Route::post('/attendance', [AttendanceController::class, 'attendance']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

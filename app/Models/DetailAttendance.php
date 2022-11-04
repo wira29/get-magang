@@ -14,5 +14,5 @@ class DetailAttendance extends Model
     protected $table = 'detail_attendances';
     protected $primaryKey = 'id';
 
-    protected $fillable = ['photo'];
+    protected $fillable = ['photo', 'attendance_id', 'status'];
 }

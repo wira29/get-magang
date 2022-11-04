@@ -14,5 +14,5 @@ class Attendance extends Model
     protected $table = 'attendances';
     protected $primaryKey = 'id';
 
-    protected $fillable = ['student_id', 'present', 'break', 'return_break', 'return'];
+    protected $fillable = ['student_id', 'status'];
 }
