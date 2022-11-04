@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignUuid('student_id')->constrained('students');
             $table->string('title', 150);
             $table->text('description');
+            $table->enum('status', ['valid', 'tidak valid']);
             $table->timestamps();
         });
     }

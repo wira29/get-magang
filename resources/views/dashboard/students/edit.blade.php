@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                             <div class="row mb-5">
-                                <div class="col-md-12 mb-3">
+                                <div class="col-md-6 mb-3">
                                     <label class="form-label"
                                         >Jenis Kelamin</label
                                     >
@@ -99,6 +99,35 @@
                                         />
                                         <span class="form-check-label">
                                             Perempuan
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label"
+                                        >Status</label
+                                    >
+                                    <label class="form-check">
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            value="aktif"
+                                            name="status"
+                                            {{ ($student->status == 'aktif') ? 'checked' : '' }}
+                                        />
+                                        <span class="form-check-label">
+                                            Aktif
+                                        </span>
+                                    </label>
+                                    <label class="form-check">
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            value="nonaktif"
+                                            name="status"
+                                            {{ ($student->status == 'nonaktif') ? 'checked' : '' }}
+                                        />
+                                        <span class="form-check-label">
+                                            Nonaktif
                                         </span>
                                     </label>
                                 </div>

@@ -20,6 +20,7 @@ class StudentRequest extends BaseRequest
                 'student_name' => 'required',
                 'gender'    => 'required',
                 'school_id' => 'required',
+                'status' => 'required',
                 'rfid'      => 'required|unique:students,rfid'
             ];
         }
@@ -28,6 +29,7 @@ class StudentRequest extends BaseRequest
                 'student_name' => 'required',
                 'gender'    => 'required',
                 'school_id' => 'required',
+                'status' => 'required',
                 'rfid'      => ['required', Rule::unique('students', 'rfid')->ignore($this->student->id)]
             ];
         }
@@ -45,6 +47,7 @@ class StudentRequest extends BaseRequest
             'gender.required'       => 'Jenis kelamin tidak boleh kosong!',
             'school_id.required'    => 'Sekolah tidak boleh kosong!',
             'rfid.required'    => 'RFID tidak boleh kosong!',
+            'status.required'    => 'Status tidak boleh kosong!',
             'rfid.unique'    => 'RFID sudah digunakan!'
         ];
     }

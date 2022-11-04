@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('gender', ['male', 'female']);
             $table->foreignUuid('school_id')->constrained('schools');
             $table->foreignUuid('user_id')->constrained('users');
+            $table->enum('status', ['aktif', 'nonaktif']);
             $table->timestamps();
         });
     }

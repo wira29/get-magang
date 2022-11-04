@@ -38,6 +38,9 @@ trait YajraTable
     {
         return DataTables::of($collection)
             ->addIndexColumn()
+            ->addColumn('status', function($data) {
+                return view('dashboard.students.status', compact('data'));
+            })
             ->addColumn('action', function ($data) {
                 return view('dashboard.students.datatables', compact('data'));
             })

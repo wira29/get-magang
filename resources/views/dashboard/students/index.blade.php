@@ -22,6 +22,7 @@
                                 <th>Nama Siswa</th>
                                 <th>Jenis Kelamin</th>
                                 <th>Sekolah</th>
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
@@ -74,6 +75,10 @@
                 {
                     data: 'school.school_name',
                     name: 'school.school_name'
+                },
+                {
+                    data: 'status',
+                    name: 'status'
                 },
                 {
                     data: 'action',
