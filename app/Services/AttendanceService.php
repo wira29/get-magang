@@ -47,13 +47,13 @@ class AttendanceService
 
         throw_if(!$action, response()->json(['status' => 'Gagal', 'message' => 'Jam absensi tidak tersedia']));
 
-        if ($action->wasRecentlyCreated) {
-            $action->update([
-                'photo' => $request->file('photo')->store('attendance_photo', 'public')
-            ]);
-        } else {
+        if (!$action->wasRecentlyCreated) {
             return response()->json(['status' => 'Gagal', 'message' => 'Anda telah absensi pada jam ini']);
         }
+
+        $action->update([
+            'photo' => $request->file('photo')->store('attendance_photo', 'public')
+        ]);
 
         return response()->json(['status' => 'Berhasil', 'message' => 'Berhasil absensi']);
     }
