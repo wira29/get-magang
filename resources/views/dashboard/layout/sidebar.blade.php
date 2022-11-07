@@ -29,7 +29,7 @@
             @if (auth()->user()->role->role_name == 'admin')
                 <li class="sidebar-item {{ request()->routeIs('school.*') ? 'active' : '' }}">
                     <a data-bs-target="#pages" data-bs-toggle="collapse" class="sidebar-link">
-                        <i class="align-middle" data-feather="layout"></i>
+                        <i class="align-middle me-2 fas fa-fw fa-school"></i>
                         <span class="align-middle">Sekolah</span>
                     </a>
                     <ul id="pages"
@@ -45,7 +45,7 @@
                 </li>
                 <li class="sidebar-item {{ request()->routeIs('student.*') ? 'active' : '' }}">
                     <a data-bs-target="#student" data-bs-toggle="collapse" class="sidebar-link collapsed">
-                        <i class="align-middle" data-feather="layout"></i>
+                        <i class="align-middle me-2 fas fa-fw fa-user-graduate"></i>
                         <span class="align-middle">Siswa</span>
                     </a>
                     <ul id="student"
@@ -58,6 +58,13 @@
                             <a class="sidebar-link" href="{{ route('student.index') }}">List Siswa</a>
                         </li>
                     </ul>
+                </li>
+                <li class="sidebar-header">Menu Absensi</li>
+                <li class="sidebar-item {{ request()->routeIs('attendance.today') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('attendance.today') }}">
+                        <i class="align-middle me-2 fas fa-fw fa-chalkboard-teacher"></i>
+                        <span class="align-middle">Absensi Siswa</span>
+                    </a>
                 </li>
             @elseif (auth()->user()->role->role_name == 'siswa')
                 <li class="sidebar-item {{ request()->routeIs('journal.*') ? 'active' : '' }}">

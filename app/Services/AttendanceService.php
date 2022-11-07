@@ -5,7 +5,6 @@ namespace App\Services;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Repositories\StudentRepository;
-use Illuminate\Support\Facades\Storage;
 use App\Repositories\AttendanceRepository;
 use App\Repositories\DetailAttendanceRepository;
 use Illuminate\Http\Exceptions\HttpResponseException;

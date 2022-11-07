@@ -111,10 +111,24 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         $destroy = $this->service->handleDeleteStudent($student->id);
-        
+
         if (!$destroy) return back()->with('errors', 'Gagal menghapus siswa!');
-        else $this->userService->handleDeleteUser($student->user_id); 
+        else $this->userService->handleDeleteUser($student->user_id);
 
         return back()->with('success', 'Berhasil menghapus siswa!');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function attendanceToday(Request $request)
+    {
+        if ($request->ajax()) return $this->service->handleGetAttendances();
+
+        return view('dashboard.attendances.index');
     }
 }

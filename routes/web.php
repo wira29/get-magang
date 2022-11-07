@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AttendanceController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JournalController;
 use App\Http\Controllers\SchoolController;
@@ -34,6 +35,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
         'school'    => SchoolController::class,
         'student'   => StudentController::class
     ]);
+    Route::name('attendance.')->prefix('attendance')->group(function () {
+        Route::get('/', [StudentController::class, 'attendanceToday'])->name('today');
+    });
 });
 
 Route::middleware(['auth', 'student'])->group(function () {

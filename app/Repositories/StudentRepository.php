@@ -25,6 +25,22 @@ class StudentRepository extends BaseRepository
     }
 
     /**
+     * get all Attendances for yajra table
+     * 
+     * @return mixed
+     */
+
+    public function getAllAttendances(): mixed
+    {
+        return $this->model->query()
+            ->with(['school', 'attendances' => function ($q) {
+                return $q->whereDate('created_at', now()->format('Y-m-d'))
+                    ->with('detail_attendances');
+            }])
+            ->get();
+    }
+
+    /**
      * get student by rfid
      * 
      * @param string $rfid

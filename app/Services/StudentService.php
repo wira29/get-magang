@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Services;
 
@@ -6,7 +6,7 @@ use App\Traits\YajraTable;
 use App\Http\Requests\StudentRequest;
 use App\Repositories\StudentRepository;
 
-class StudentService 
+class StudentService
 {
     use YajraTable;
     private StudentRepository $repository;
@@ -71,8 +71,21 @@ class StudentService
      * @param string id
      * @return bool
      */
+
     public function handleDeleteStudent(string $id): bool
     {
         return $this->repository->destroy($id);
+    }
+
+    /**
+     * handle get student attendances using yajra
+     * 
+     * @return object
+     */
+
+    public function handleGetAttendances()
+    {
+        $data = $this->repository->getAllAttendances();
+        return $this->AttendanceMockup($data);
     }
 }

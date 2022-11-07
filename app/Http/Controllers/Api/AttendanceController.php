@@ -23,6 +23,7 @@ class AttendanceController extends Controller
      * 
      * @return JsonResponse
      */
+
     public function attendance(Request $request): JsonResponse
     {
         if ($request->hasFile('photo')) {
