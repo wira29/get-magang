@@ -76,4 +76,26 @@ class AttendanceService
 
          $this->repository->update($id, $data);
     }
+
+    /**
+     * handle update status by admin
+     * 
+     * @param Request $request
+     * 
+     * @return void
+     */
+    public function handleUpdateStatusByAdmin(Request $request): void
+    {
+        $data = [
+            'student_id' => $request->student_id,
+            'status'    => $request->status
+        ];
+
+        if (!$attendance = $this->repository->getAttendanceByDate($request->student_id, now()->format('Y-m-d'))) {
+
+            $this->repository->store($data);
+        } else{
+            $this->repository->update($attendance->id, $data);
+        }
+    }
 }

@@ -129,7 +129,10 @@ class StudentController extends Controller
     {
         if ($request->ajax()) return $this->service->handleGetAttendances();
 
-        return view('dashboard.attendances.index');
+        $data = [
+            'students' => $this->service->handleGetAllStudent()
+        ];
+        return view('dashboard.attendances.index', $data);
     }
 
     /**
