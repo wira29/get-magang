@@ -101,11 +101,14 @@
                 </a>
 
                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                    <!-- <img
-                        src="{{ asset('app-assets/img/avatars/avatar.jpg') }}"
-                        class="avatar img-fluid rounded-circle me-1"
-                        alt="Chris Wood"
-                    /> -->
+                    @if (auth()->user()->photo)
+                        <img src="{{ asset('storage/' . auth()->user()->photo) }}"
+                            class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}" />
+                    @else
+                        <img src="{{ asset('app-assets/img/avatars/avatar.jpg') }}"
+                            class="avatar img-fluid rounded-circle me-1" alt="{{ auth()->user()->name }}" />
+                    @endif
+
                     <span class="text-dark">{{ auth()->user()->name }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">

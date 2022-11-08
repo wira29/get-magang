@@ -32,7 +32,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
-        'github'
+        'github',
+        'photo'
     ];
 
     /**

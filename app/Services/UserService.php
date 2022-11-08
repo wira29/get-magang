@@ -6,6 +6,7 @@ use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\StudentRequest;
 use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Storage;
 
 class UserService
 {
@@ -41,7 +42,18 @@ class UserService
 
     public function handleUpdateUserById(ProfileRequest $request, string $id): void
     {
+        $show = $this->repository->show($id);
+
         $this->repository->update($id, $request->validated());
+
+        if ($request->hasFile('photo')) {
+            if (!is_null($show->photo)) {
+                Storage::delete('public/' . $show->photo);
+            }
+            $show->update([
+                'photo' => $request->file('photo')->store('user_photo', 'public')
+            ]);
+        }
     }
 
     /**

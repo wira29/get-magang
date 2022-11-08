@@ -18,7 +18,8 @@ class ProfileRequest extends BaseRequest
                 'name'  => 'required',
                 'username' => ['required', Rule::unique('users', 'username')->ignore($this->users)],
                 'email' => ['required', Rule::unique('users', 'email')->ignore($this->users)],
-                'github' => 'nullable|url'
+                'github' => 'nullable|url',
+                'photo' => 'nullable|mimes:jpg,png,jpeg|image|max:2048'
             ];
         } else if (request()->routeIs('profile.reset-password')) {
             return [
@@ -44,7 +45,9 @@ class ProfileRequest extends BaseRequest
             'old_password.required' => 'Password lama tidak boleh kosong!',
             'password.required' => 'Password tidak boleh kosong!',
             'password.confirmed'    => 'Konfirmasi password tidak boleh sesuai!',
-            'github.url' => 'Link tidak valid'
+            'github.url' => 'Link tidak valid',
+            'photo.mimes' => 'Ekstensi gambar tidak valid',
+            'photo.max' => 'Foto maksimal 2Mb'
         ];
     }
 }

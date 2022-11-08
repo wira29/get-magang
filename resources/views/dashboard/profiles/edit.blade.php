@@ -25,8 +25,9 @@
                             <h5 class="card-title mb-0">Edit Profile</h5>
                         </div>
                         <div class="card-body">
-                            <form id="form" action="{{ route('profile.update', $user->id) }}" method="POST">
-                                @method('POST') @csrf
+                            <form id="form" action="{{ route('profile.update', $user->id) }}" method="POST"
+                                enctype="multipart/form-data">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
                                         <label class="form-label">Nama</label>
@@ -53,6 +54,12 @@
                                             <input autocomplete="off" type="text" value="{{ $user->github }}"
                                                 name="github" class="form-control"
                                                 placeholder="https://github.com/Yudas1337/repository" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label class="form-label">Foto Profil</label>
+                                        <div class="mb-3">
+                                            <input type="file" name="photo" class="form-control" />
                                         </div>
                                     </div>
                                 </div>
