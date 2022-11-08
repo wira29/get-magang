@@ -35,6 +35,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
         'school'    => SchoolController::class,
         'student'   => StudentController::class
     ]);
+    Route::post('/updateByAdmin', [AttendanceController::class, 'updateAttendanceByAdmin'])->name('updateByAdmin');
     Route::name('attendance.')->prefix('attendance')->group(function () {
         Route::get('/', [StudentController::class, 'attendanceToday'])->name('today');
         Route::get('/{student}', [StudentController::class, 'attendanceDetail'])->name('detail');

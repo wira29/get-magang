@@ -27,4 +27,16 @@ class AttendanceController extends Controller
 
         return back();
     }
+
+    /**
+     * update attendace by admin function
+     * 
+     * @param Request $request
+     */
+
+    public function updateAttendanceByAdmin(Request $request)
+    {
+        $this->service->handleUpdateStatusByAdmin($request);
+        return back()->with('success', 'Berhasil mengedit absensi siswa !');
+    }
 }
