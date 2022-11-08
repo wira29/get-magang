@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Services\StudentService;
 
 class HomeController extends Controller
 {
+    private StudentService $service;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(StudentService $studentService)
     {
-        $this->middleware('auth');
+        $this->service = $studentService;
     }
 
     /**
@@ -23,6 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $attendances = $this->service->handleStudentAttendanceToday(auth()->id())->attendances->first();
+        return view('dashboard.index', compact('attendances'));
     }
 }
