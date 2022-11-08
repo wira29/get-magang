@@ -81,7 +81,6 @@ trait YajraTable
 
     public function AttendanceMockup(mixed $collection): JsonResponse
     {
-
         return DataTables::of($collection)
             ->addIndexColumn()
             ->editColumn('present', function ($data) {
@@ -104,6 +103,27 @@ trait YajraTable
                 return view('dashboard.attendances.datatables', compact('data'));
             })
             ->rawColumns(['action'])
+            ->toJson();
+    }
+
+    /**
+     * Datatable mockup for journal resource
+     *
+     * @param mixed $collection
+     *
+     * @return JsonResponse
+     */
+
+    public function MyAttendanceMockup($collection): JsonResponse
+    {
+        return DataTables::of($collection)
+            ->addIndexColumn()
+            ->editColumn('created_at', function ($data) {
+                return Carbon::parse($data->created_at)->format('d M Y');
+            })
+            ->editColumn('status', function ($data) {
+                return view('dashboard.attendances.status.myAttendance', compact('data'));
+            })
             ->toJson();
     }
 }

@@ -38,8 +38,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/updateByAdmin', [AttendanceController::class, 'updateAttendanceByAdmin'])->name('updateByAdmin');
     Route::name('attendance.')->prefix('attendance')->group(function () {
         Route::get('/', [StudentController::class, 'attendanceToday'])->name('today');
-        Route::get('/{student}', [StudentController::class, 'attendanceDetail'])->name('detail');
-        Route::post('/{attendance}', [AttendanceController::class, 'editStatus'])->name('editAttendance');
+        Route::get('{student}', [StudentController::class, 'attendanceDetail'])->name('detail');
+        Route::post('{attendance}', [AttendanceController::class, 'editStatus'])->name('editAttendance');
     });
 });
 
@@ -48,6 +48,7 @@ Route::middleware(['auth', 'student'])->group(function () {
     Route::resources([
         'journal'   => JournalController::class
     ]);
+    Route::get('my-attendance', [AttendanceController::class, 'myAttendance'])->name('myAttendance');
 });
 
 Route::middleware('auth')->group(function () {

@@ -40,7 +40,7 @@ class DetailAttendanceRepository extends BaseRepository
                     ['attendance_id' => $attendance_id, 'status' => 'return_break'],
                     ['status' => 'return_break']
                 );
-        } else if ($time >= '15:30:00' && $time <= '16:00:00') {
+        } else if ($time >= '15:30:00' && $time <= '17:00:00') {
             return $this->model->query()
                 ->updateOrCreate(
                     ['attendance_id' => $attendance_id, 'status' => 'return'],
