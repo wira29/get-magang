@@ -86,6 +86,20 @@ class StudentService
     public function handleGetAttendances()
     {
         $data = $this->repository->getAllAttendances();
+        // dd($data);
         return $this->AttendanceMockup($data);
+    }
+
+    /**
+     * handle get student by id
+     * 
+     * @param string $id
+     * 
+     * @return object|null
+     */
+    public function handleGetAttendanceByStudentId(string $id): object|null
+    {
+        $date = now()->format('Y-m-d');
+        return $this->repository->getAttendanceByStudentId($id, $date);
     }
 }

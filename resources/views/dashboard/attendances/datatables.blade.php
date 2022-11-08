@@ -5,7 +5,7 @@
             Opsi
         </button>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="">Detail </a>
+            <a class="dropdown-item" href="{{ route('attendance.detail', $data->id) }}">Detail </a>
         </div>
     </div>
 </td>

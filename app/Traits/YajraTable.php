@@ -89,20 +89,17 @@ trait YajraTable
                 return view('dashboard.attendances.status.present', compact('attendances'));
             })
             ->editColumn('break', function ($data) {
-                $attendances = $data->attendances?->first()->detail_attendances;
+                $attendances = $data->attendances?->first()?->detail_attendances;
                 return view('dashboard.attendances.status.break', compact('attendances'));
             })
             ->editColumn('return_break', function ($data) {
-                $attendances = $data->attendances?->first()->detail_attendances;
+                $attendances = $data->attendances?->first()?->detail_attendances;
                 return view('dashboard.attendances.status.return_break', compact('attendances'));
             })
             ->editColumn('return', function ($data) {
-                $attendances = $data->attendances?->first()->detail_attendances;
+                $attendances = $data->attendances?->first()?->detail_attendances;
                 return view('dashboard.attendances.status.return', compact('attendances'));
             })
-            // ->editColumn('created_at', function ($data) {
-            //     return date('d F Y', $data->created_at);
-            // })
             ->addColumn('action', function ($data) {
                 return view('dashboard.attendances.datatables', compact('data'));
             })

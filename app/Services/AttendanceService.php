@@ -58,4 +58,22 @@ class AttendanceService
 
         return response()->json(['status' => 'Berhasil', 'message' => 'Berhasil absensi']);
     }
+
+    /**
+     * handle edit status
+     * 
+     * @param Request $request
+     * @param string $id
+     * 
+     * @return void 
+     */
+    public function handleEditStatus(Request $request, string $id): void
+    {
+
+        $data = [
+            'status' => $request->status,
+        ];
+
+         $this->repository->update($id, $data);
+    }
 }

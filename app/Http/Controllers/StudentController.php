@@ -131,4 +131,28 @@ class StudentController extends Controller
 
         return view('dashboard.attendances.index');
     }
+
+    /**
+     * Show attendance detail page
+     * 
+     * @param Student $student
+     * 
+     * @return View
+     */
+    public function attendanceDetail(Student $student)
+    {
+        $bg = [
+            'masuk' => 'bg-success',
+            'izin'  => 'bg-warning',
+            'sakit' => 'bg-warning',
+            'alpha' => 'bg-danger'
+        ];
+
+        $data = [
+            'student'    => $this->service->handleGetAttendanceByStudentId($student->id),
+            'bg'        => $bg
+        ];
+
+        return view('dashboard.attendances.detail', $data);
+    }
 }
