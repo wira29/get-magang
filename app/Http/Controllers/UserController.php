@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Services\UserService;
 use App\Http\Requests\ProfileRequest;
 
@@ -43,7 +42,6 @@ class UserController extends Controller
 
     public function resetPassword(ProfileRequest $request)
     {
-        // dd($request);
         $this->service->handleUpdatePasswordUserById($request, auth()->id());
         return back()->with('success', 'Berhasil memperbarui password!');
     }

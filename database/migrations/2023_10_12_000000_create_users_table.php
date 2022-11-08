@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->foreignUuid('role_id')->constrained('roles');
             $table->text('github')->nullable();
+            $table->text('photo')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
