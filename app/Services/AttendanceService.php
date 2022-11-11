@@ -7,11 +7,14 @@ use Illuminate\Http\JsonResponse;
 use App\Repositories\StudentRepository;
 use App\Repositories\AttendanceRepository;
 use App\Repositories\DetailAttendanceRepository;
+use App\Traits\YajraTable;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Storage;
 
 class AttendanceService
 {
+    use YajraTable;
+
     private AttendanceRepository $repository;
     private StudentRepository $studentRepository;
     private DetailAttendanceRepository $detailAttendanceRepository;
@@ -75,7 +78,7 @@ class AttendanceService
             'status' => $request->status,
         ];
 
-         $this->repository->update($id, $data);
+        $this->repository->update($id, $data);
     }
 
     /**
@@ -95,9 +98,22 @@ class AttendanceService
         if (!$attendance = $this->repository->getAttendanceByDate($request->student_id, now()->format('Y-m-d'))) {
 
             $this->repository->store($data);
-        } else{
+        } else {
             $this->repository->update($attendance->id, $data);
         }
+    }
+
+    /**
+     * handle get my attendance
+     * 
+     * @param Request $request
+     * 
+     * @return mixed
+     */
+
+    public function handleGetMyAttendances(): mixed
+    {
+        return $this->MyAttendanceMockup($this->repository->getMyAttendance());
     }
 
     /**

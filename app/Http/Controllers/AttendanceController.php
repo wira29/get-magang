@@ -39,6 +39,19 @@ class AttendanceController extends Controller
         $this->service->handleUpdateStatusByAdmin($request);
         return back()->with('success', 'Berhasil mengedit absensi siswa !');
     }
+    
+    /**
+     * get my attendance 
+     * 
+     * @param Request $request
+     */
+
+    public function myAttendance(Request $request): mixed
+    {
+        if ($request->ajax()) return $this->service->handleGetMyAttendances();
+
+        return view('dashboard.attendances.my-attendance');
+    }
 
     /**
      * delete directory

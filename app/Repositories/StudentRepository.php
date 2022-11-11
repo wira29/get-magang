@@ -62,16 +62,38 @@ class StudentRepository extends BaseRepository
      * get attendance by id
      * 
      * @param string $id
+     * @param string $date
      * 
      * @return object|null
      */
+
     public function getAttendanceByStudentId(string $id, string $date): object|null
     {
         return $this->model->query()
-            ->with(['attendances' => function($q) use($date){
+            ->with(['attendances' => function ($q) use ($date) {
                 $q->whereDate('created_at', $date);
             }, 'attendances.detail_attendances'])
             ->where('id', $id)
             ->first();
+    }
+
+    /**
+     * get attendance by id
+     * 
+     * @param string $id
+     * @param string $date
+     * 
+     * @return object|null
+     */
+
+    public function getStudentAttendanceToday(string $id, string $date): object|null
+    {
+        return $this->model->query()
+            ->with(['attendances' => function ($q) use ($date) {
+                $q->whereDate('created_at', $date)
+                    ->with('detail_attendances');
+            }])
+            ->where('user_id', $id)
+            ->firstOrFail();
     }
 }

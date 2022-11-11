@@ -39,4 +39,22 @@ class AttendanceRepository extends BaseRepository
             ->whereDate('created_at', $date)
             ->first();
     }
+
+    /**
+     * get my attendance
+     * 
+     * @param string $userId
+     * @param string $date
+     * 
+     * @return object|null
+     */
+
+    public function getMyAttendance(): object
+    {
+        return $this->model->query()
+            ->select('attendances.id', 'attendances.created_at', 'student_id', 'attendances.status')
+            ->join('students', 'students.id', '=', 'attendances.student_id')
+            ->where('user_id', auth()->id())
+            ->latest();
+    }
 }

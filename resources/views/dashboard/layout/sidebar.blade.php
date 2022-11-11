@@ -84,8 +84,8 @@
                     </ul>
                 </li>
                 <li class="sidebar-header">Absensi Harian</li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('dashboard.index') }}">
+                <li class="sidebar-item {{ request()->routeIs('myAttendance') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('myAttendance') }}">
                         <i class="align-middle me-2 fas fa-fw fa-calendar-alt"></i>
                         <span class="align-middle">History Absen</span>
                     </a>

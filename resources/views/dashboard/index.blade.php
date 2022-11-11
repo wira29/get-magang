@@ -24,11 +24,13 @@
                             </div>
                         @endif
                     @endif
-
-
+                </div>
+                <div class="col-md-8">
+                    @if (auth()->user()->role->role_name === 'siswa')
+                        <x-student-attendance :attendances="$attendances"></x-student-attendance>
+                    @endif
                 </div>
             </div>
-
         </div>
     </main>
 @endsection
