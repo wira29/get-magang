@@ -39,4 +39,13 @@ class AttendanceController extends Controller
         $this->service->handleUpdateStatusByAdmin($request);
         return back()->with('success', 'Berhasil mengedit absensi siswa !');
     }
+
+    /**
+     * delete directory
+     */
+    public function deleteDirectory()
+    {
+        $this->service->handleDeleteDirectory();
+        return back()->with('success', 'Berhasil menghapus foto absensi !');
+    }
 }

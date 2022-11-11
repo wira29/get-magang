@@ -8,6 +8,7 @@ use App\Repositories\StudentRepository;
 use App\Repositories\AttendanceRepository;
 use App\Repositories\DetailAttendanceRepository;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Storage;
 
 class AttendanceService
 {
@@ -97,5 +98,15 @@ class AttendanceService
         } else{
             $this->repository->update($attendance->id, $data);
         }
+    }
+
+    /**
+     * handle delete directory
+     * 
+     * @return void
+     */
+    public function handleDeleteDirectory(): void
+    {
+        Storage::disk('public')->deleteDirectory('attendance_photo');
     }
 }
