@@ -16,8 +16,9 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row mb-5">
-                                <div class="col-12 d-flex flex-column align-items-end">
+                                <div class="col-12 d-flex flex-row align-items-end">
                                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#defaultModalPrimary">Tambah Absensi</button>
+                                    <a href="#" id="deletePhoto" class="btn btn-danger ms-3">Hapus Foto Absensi</a>
 
                                     <div class="modal fade" id="defaultModalPrimary" tabindex="-1" role="dialog" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
@@ -90,6 +91,13 @@
 @section('script')
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+
+            $('#deletePhoto').click(function() {
+                const conf = window.confirm("Apakah anda yakin ?")
+                if(conf){
+                    window.location.href = "{{ route('deletePhoto') }}"
+                }
+            })
 
             // Select2
             $(".select2").each(function() {

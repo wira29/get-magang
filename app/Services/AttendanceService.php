@@ -9,6 +9,7 @@ use App\Repositories\AttendanceRepository;
 use App\Repositories\DetailAttendanceRepository;
 use App\Traits\YajraTable;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Storage;
 
 class AttendanceService
 {
@@ -113,5 +114,15 @@ class AttendanceService
     public function handleGetMyAttendances(): mixed
     {
         return $this->MyAttendanceMockup($this->repository->getMyAttendance());
+    }
+
+    /**
+     * handle delete directory
+     * 
+     * @return void
+     */
+    public function handleDeleteDirectory(): void
+    {
+        Storage::disk('public')->deleteDirectory('attendance_photo');
     }
 }

@@ -36,6 +36,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
         'student'   => StudentController::class
     ]);
     Route::post('/updateByAdmin', [AttendanceController::class, 'updateAttendanceByAdmin'])->name('updateByAdmin');
+    Route::get('/deletePhoto', [AttendanceController::class, 'deleteDirectory'])->name('deletePhoto');
     Route::name('attendance.')->prefix('attendance')->group(function () {
         Route::get('/', [StudentController::class, 'attendanceToday'])->name('today');
         Route::get('{student}', [StudentController::class, 'attendanceDetail'])->name('detail');
