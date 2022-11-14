@@ -89,11 +89,11 @@ class StudentRepository extends BaseRepository
     public function getStudentAttendanceToday(string $id, string $date): object|null
     {
         return $this->model->query()
-            ->with(['attendances' => function ($q) use ($date) {
+            ->with('attendances', function ($q) use ($date) {
                 $q->whereDate('created_at', $date)
                     ->with('detail_attendances');
-            }])
+            })
             ->where('user_id', $id)
-            ->firstOrFail();
+            ->first();
     }
 }

@@ -25,7 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $attendances = $this->service->handleStudentAttendanceToday(auth()->id())->attendances->first();
+        $attendances = $this->service->handleStudentAttendanceToday(auth()->id());
+        if ($attendances) {
+            $attendances = $attendances->attendances?->first();
+        }
         return view('dashboard.index', compact('attendances'));
     }
 }
