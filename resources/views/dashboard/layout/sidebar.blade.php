@@ -66,6 +66,12 @@
                         <span class="align-middle">Absensi Siswa</span>
                     </a>
                 </li>
+                <li class="sidebar-item {{ request()->routeIs('searchAttendance.index') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('searchAttendance.index') }}">
+                        <i class="align-middle me-2 fas fa-fw fa-search"></i>
+                        <span class="align-middle">Cari Absensi Siswa</span>
+                    </a>
+                </li>
             @elseif (auth()->user()->role->role_name == 'siswa')
                 <li class="sidebar-item {{ request()->routeIs('journal.*') ? 'active' : '' }}">
                     <a data-bs-target="#journal" data-bs-toggle="collapse" class="sidebar-link collapsed">

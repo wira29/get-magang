@@ -28,9 +28,9 @@ class AttendanceService
 
     /**
      * handle submit attendance student
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @return JsonResponse
      */
     public function handleAttendance(Request $request): JsonResponse
@@ -64,12 +64,34 @@ class AttendanceService
     }
 
     /**
+     * handle get attendance by id
+     *
+     * @param string $attendanceId
+     * @return mixed
+     */
+    public function handleGetAttendanceById(string $attendanceId): mixed
+    {
+        return $this->repository->getById($attendanceId);
+    }
+
+    /**
+     * handle get attendance by student
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    public function handleGetAttendanceByStudent(Request $request): mixed
+    {
+        return $this->repository->getAttendanceByStudent($request);
+    }
+
+    /**
      * handle edit status
-     * 
+     *
      * @param Request $request
      * @param string $id
-     * 
-     * @return void 
+     *
+     * @return void
      */
     public function handleEditStatus(Request $request, string $id): void
     {
@@ -83,9 +105,9 @@ class AttendanceService
 
     /**
      * handle update status by admin
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @return void
      */
     public function handleUpdateStatusByAdmin(Request $request): void
@@ -105,9 +127,9 @@ class AttendanceService
 
     /**
      * handle get my attendance
-     * 
+     *
      * @param Request $request
-     * 
+     *
      * @return mixed
      */
 
@@ -118,7 +140,7 @@ class AttendanceService
 
     /**
      * handle delete directory
-     * 
+     *
      * @return void
      */
     public function handleDeleteDirectory(): void

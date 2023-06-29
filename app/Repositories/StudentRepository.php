@@ -15,7 +15,7 @@ class StudentRepository extends BaseRepository
 
     /**
      * get all student for yajra table
-     * 
+     *
      * @return mixed
      */
     public function getAllStudent(): mixed
@@ -26,7 +26,7 @@ class StudentRepository extends BaseRepository
 
     /**
      * get all Attendances for yajra table
-     * 
+     *
      * @return mixed
      */
 
@@ -37,14 +37,15 @@ class StudentRepository extends BaseRepository
                 return $q->whereDate('created_at', now()->format('Y-m-d'))
                     ->with('detail_attendances');
             }])
+            ->latest()
             ->get();
     }
 
     /**
      * get student by rfid
-     * 
+     *
      * @param string $rfid
-     * 
+     *
      * @return object|null
      */
     public function getStudentByRfid(string $rfid): object|null
@@ -60,10 +61,10 @@ class StudentRepository extends BaseRepository
 
     /**
      * get attendance by id
-     * 
+     *
      * @param string $id
      * @param string $date
-     * 
+     *
      * @return object|null
      */
 
@@ -79,10 +80,10 @@ class StudentRepository extends BaseRepository
 
     /**
      * get attendance by id
-     * 
+     *
      * @param string $id
      * @param string $date
-     * 
+     *
      * @return object|null
      */
 
