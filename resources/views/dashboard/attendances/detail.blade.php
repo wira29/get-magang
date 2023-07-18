@@ -9,6 +9,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
+                            @if(isset($student->attendances[0]))
                             <div class="col-12">
                                 <div class="row">
                                     <div class="col-6">
@@ -66,6 +67,7 @@
                                     @endforeach
                                 </ul>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>

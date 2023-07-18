@@ -28,7 +28,7 @@ class DetailAttendanceRepository extends BaseRepository
                     ['attendance_id' => $attendance_id, 'status' => 'present'],
                     ['status' => 'present']
                 );
-        } else if ($time >= '11:30:00' && $time <= '12:30:00') {
+        } else if ($time >= '11:00:00' && $time <= '12:30:00') {
             return $this->model->query()
                 ->updateOrCreate(
                     ['attendance_id' => $attendance_id, 'status' => 'break'],
@@ -40,7 +40,7 @@ class DetailAttendanceRepository extends BaseRepository
                     ['attendance_id' => $attendance_id, 'status' => 'return_break'],
                     ['status' => 'return_break']
                 );
-        } else if ($time >= '15:30:00' && $time <= '17:00:00') {
+        } else if ($time >= '15:00:00' && $time <= '21:00:00') {
             return $this->model->query()
                 ->updateOrCreate(
                     ['attendance_id' => $attendance_id, 'status' => 'return'],
